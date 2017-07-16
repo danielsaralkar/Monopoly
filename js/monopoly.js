@@ -328,7 +328,7 @@ Monopoly.isValidInput = function(validate,value){
         Monopoly.showErrorMsg();
     }
     return isValid;
-
+ 
 }
 
 Monopoly.showErrorMsg = function(){
