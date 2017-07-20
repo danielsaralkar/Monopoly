@@ -10,7 +10,6 @@ body{
     margin:auto;
     margin-top:10px;
     margin-bottom:10px;
-    
 }
 
 .board .cell{
@@ -39,7 +38,6 @@ body{
     border-right: 1px solid black;
 }
 
-
 .board .corner.game.cell{
     height: 15.3%;
     width: 15.3%;
@@ -59,11 +57,9 @@ body{
     background-image: url(../images/jail.jpg);
 }
 
-
 .board .game.cell.free-parking{
     background-image: url(../images/parking.png);
 }
-
 
 .board .bottom.game.cell{
     vertical-align: bottom;
@@ -130,13 +126,11 @@ body{
     background-repeat: no-repeat;
 }
 
-
 .board .game.cell.community .content{
     background-image:url(../images/community.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
-
 
 .board .game.cell .title{
     height:20%;
@@ -174,14 +168,16 @@ body{
 }
 
 .player.jailed{
-    background-image: url("../images/sad.jpg");
-    background-size: contain;
+    background-image: url("../images/sad.png");
+    background-size: cover;
 }
 
+.player.removed{
+    display:none;
+}
 .bottom.game.cell:not(.corner) .player , .top.game.cell:not(.corner) .player{
         width: 40%;
 }
-
 
 .left.game.cell:not(.corner) .player , .right.game.cell:not(.corner) .player{
     height: 40%;
@@ -189,8 +185,8 @@ body{
 }
 
 .game.cell.player1 .player#player1, .game.cell.player2 .player#player2, .game.cell.player3 .player#player3, .game.cell.player4 .player#player4{
-    background-image: url("../images/smile.jpg");
-    background-size: contain;
+    background-image: url("../images/smile.png");
+    background-size: cover;
 }
 
 .player#player1 , .player1.cell .content {

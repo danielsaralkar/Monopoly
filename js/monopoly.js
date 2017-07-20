@@ -1,6 +1,6 @@
 var Monopoly = {};
 Monopoly.allowRoll = true;
-Monopoly.moneyAtStart = 500;//1000;
+Monopoly.moneyAtStart = 10;//1000;
 Monopoly.doubleCounter = 0;
 
 Monopoly.init = function(){
@@ -44,13 +44,19 @@ Monopoly.updatePlayersMoney = function(player,amount){
     var playersMoney = parseInt(player.attr("data-money"));
     playersMoney -= amount;
     if (playersMoney < 0 ){
-        alert("you are broke!");///////////////////////
+            var popup = Monopoly.getPopup("broke");
+            popup.find("button").unbind("click").bind("click",function(){
+                Monopoly.handleAction(player,"remove");
+                Monopoly.closeBrokePopup();
+            });
+            Monopoly.showPopup("broke");
+        //alert("you are broke!");///////////////////////
+    }else{
+        player.attr("data-money",playersMoney);
+        player.attr("title",player.attr("id") + ": $" + playersMoney);
+        Monopoly.playSound("chaching");
     }
-    player.attr("data-money",playersMoney);
-    player.attr("title",player.attr("id") + ": $" + playersMoney);
-    Monopoly.playSound("chaching");
 };
-
 
 Monopoly.rollDice = function(){
     var result1 = Math.floor(Math.random() * 6) + 1 ;
@@ -66,7 +72,6 @@ Monopoly.rollDice = function(){
     //Monopoly.handleAction(currentPlayer,"move",5);
 };
 
-
 Monopoly.movePlayer = function(player,steps){
     Monopoly.allowRoll = false;
     var playerMovementInterval = setInterval(function(){
@@ -81,7 +86,6 @@ Monopoly.movePlayer = function(player,steps){
         }
     },200);
 };
-
 
 Monopoly.handleTurn = function(){
     var player = Monopoly.getCurrentPlayer();
@@ -102,9 +106,11 @@ Monopoly.handleTurn = function(){
 }
 
 Monopoly.setNextPlayerTurn = function(){
+
     var currentPlayerTurn = Monopoly.getCurrentPlayer();
     var playerId = parseInt(currentPlayerTurn.attr("id").replace("player",""));
     var nextPlayerId = playerId + 1;
+console.log("=====>" + $(".player").length);
     if (nextPlayerId > $(".player").length){
         nextPlayerId = 1;
     }
@@ -122,10 +128,13 @@ Monopoly.setNextPlayerTurn = function(){
         Monopoly.setNextPlayerTurn();
         return;
     }
+    else if(nextPlayer.is(".removed")){
+        Monopoly.setNextPlayerTurn();
+        return;
+    }
     Monopoly.closePopup();
     Monopoly.allowRoll = true;
 };
-
 
 Monopoly.handleBuyProperty = function(player,propertyCell){
     var propertyCost = Monopoly.calculateProperyCost(propertyCell);
@@ -158,7 +167,6 @@ Monopoly.handlePayRent = function(player,propertyCell){
    Monopoly.showPopup("pay");
 };
 
-
 Monopoly.handleGoToJail = function(player){
     var popup = Monopoly.getPopup("jail");
     popup.find("button").unbind("click").bind("click",function(){
@@ -166,7 +174,6 @@ Monopoly.handleGoToJail = function(player){
     });
     Monopoly.showPopup("jail");
 };
-
 
 Monopoly.handleChanceCard = function(player){
     var popup = Monopoly.getPopup("chance");
@@ -218,7 +225,11 @@ Monopoly.sendToJail = function(player){
 
 
 Monopoly.getPopup = function(popupId){
-    return $(".popup-lightbox .popup-page#" + popupId);
+    if(popupId === "broke"){
+        return $(".popup-darkbox .popup-page#" + popupId);
+    }else{
+        return $(".popup-lightbox .popup-page#" + popupId);
+    }
 };
 
 Monopoly.calculateProperyCost = function(propertyCell){
@@ -286,6 +297,10 @@ Monopoly.handleAction = function(player,action,amount){
             break;
         case "jail":
             Monopoly.sendToJail(player);
+            break;
+        case "remove":
+            Monopoly.removePlayer(player);
+            Monopoly.setNextPlayerTurn();
             break;
     };
     Monopoly.closePopup();
@@ -366,6 +381,10 @@ Monopoly.closePopup = function(){
     $(".popup-lightbox").fadeOut();
 };
 
+Monopoly.closeBrokePopup = function(){
+    $(".popup-darkbox").fadeOut();
+}
+
 Monopoly.playSound = function(sound){
     var snd = new Audio("./sounds/" + sound + ".wav"); 
     snd.play();
@@ -375,6 +394,20 @@ Monopoly.showPopup = function(popupId){
     $(".popup-lightbox .popup-page").hide();
     $(".popup-lightbox .popup-page#" + popupId).show();
     $(".popup-lightbox").fadeIn();
+    if(popupId === "broke"){
+        $(".popup-darkbox .popup-page#" + popupId).show();
+        $(".popup-darkbox").fadeIn();
+    }
 };
+
+Monopoly.removePlayer = function(player){
+    //var player = Monopoly.getCurrentPlayer();
+    console.log(player.attr("id"));
+    var playerId = player.attr("id");
+    $("#" + playerId).addClass("removed");
+    $("." + playerId).removeClass(playerId).addClass("available");
+    //player.attr("id");
+    
+}
 
 Monopoly.init();

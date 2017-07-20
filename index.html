@@ -5,7 +5,7 @@
 		<title>Monopoly</title>
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="./css/monopoly.css">
-        <link rel="stylesheet" href="./css/common.css">
+                <link rel="stylesheet" href="./css/common.css">
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
 		<script src="./js/monopoly.js" type="text/javascript"></script>
 		
@@ -171,8 +171,8 @@
                                 <button id="yes" class="clickable" >YES</button>
                                 <button id="no" class="clickable" >NO</button><br>
                                 <div class="invalid-error" >You don't have enough money...</div></div>
-                                </div>
-                       
+                        </div>
+                        
                         <div id="jail" class="popup-page" style="display:none;">
                                 <div class="popup-title">Go to Jail!</div>
                                 <div class="popup-content">You miss 3 turns<br />
@@ -203,4 +203,16 @@
                 </div>
         </div>
         </div>
+        <div class="popup-darkbox" style="display:none;">
+                <div class="middle-center shadowed popup">
+                        <div id="broke" class="popup-page" style="display:none;">
+                                <div class="popup-title">You are Broke!</div>
+                                <div class="popup-content">You dont have any more money left!<br />
+                                        You have been kicked out of the game and all your properties are seized.<br />
+                                        <button id="ok" class="clickable">:-(</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        </body>
 </html>
