@@ -184,25 +184,33 @@ body{
     width: 25%;
 }
 
-.game.cell.player1 .player#player1, .game.cell.player2 .player#player2, .game.cell.player3 .player#player3, .game.cell.player4 .player#player4{
+.game.cell.player1 .player#player1, .game.cell.player2 .player#player2, .game.cell.player3 .player#player3, .game.cell.player4 .player#player4, .game.cell.player5 .player#player5, .game.cell.player6 .player#player6{
     background-image: url("../images/smile.png");
     background-size: cover;
 }
 
 .player#player1 , .player1.cell .content {
-    background-color: #389c36;
+    background-color: green;
 }
 
 .player#player2 , .player2.cell .content{
-    background-color: #364c9c;
+    background-color: aqua;
 }
 
 .player#player3 , .player3.cell .content{
-    background-color: #d09461;
+    background-color: red;
 }
 
 .player#player4 , .player4.cell .content{
-    background-color: #d061cd;
+    background-color: fuchsia;
+}
+
+.player#player5 , .player5.cell .content{
+    background-color: yellow;
+}
+
+.player#player6 , .player6.cell .content{
+    background-color: blue;
 }
 
 .player.current-turn{
