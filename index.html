@@ -11,6 +11,7 @@
 		
 	</head>
 	<body>
+        <!-- Building the Board -->
         <div class="board">
                 <div id="cell21" class="top left corner game cell free-parking"><div class="content"></div></div>
                 <div id="cell22" class="top game cell available property" data-group="group5"><div class="content"></div><div class="title"></div></div>
@@ -151,13 +152,11 @@
                 <div id="cell3" class="bottom game cell available property" data-group="group1"><div class="title"></div><div class="content"></div></div>
                 <div id="cell2" class="bottom game cell available property" data-group="group1"><div class="title"></div><div class="content"></div></div>
                 <div id="cell1" class="bottom right corner game cell go"><div class="content"></div></div>
-
-
         </section>
         <section class="hidden templates" style="display:none;" >
-
                 
         </section>
+        <!-- All pop ups -->
         <div class="popup-lightbox" style="display:none;">
                 <div class="middle-center shadowed popup">
                         <div id="intro" class="popup-page" style="display:none;">
@@ -175,7 +174,7 @@
                         
                         <div id="jail" class="popup-page" style="display:none;">
                                 <div class="popup-title">Go to Jail!</div>
-                                <div class="popup-content">You miss 3 turns<br />
+                                <div class="popup-content">It has been found you are cheating! You miss 3 turns<br />
                                          <button id="ok" class="clickable">Bummer</button>
                                 </div>
                         </div>
@@ -200,7 +199,19 @@
                                         <button id="ok" class="clickable">OK</button>
                                 </div>
                         </div>
+                        <div id="finish" class="popup-page" style="display:none;">
+                                <div class="popup-title">You Win</div>
+                                <div class="popup-content">The Game is over and the winner is <span id="player-placeholder"></span><br />
+                                        <button id="reset" class="clickable">Reset</button>
+                                </div>
+                        </div>
                 </div>
+        </div>
+        <!-- Display Scoreboard at right side of page -->
+        <div class="scoreboard">
+                <table border="1" align="center" id="scoretable" style="display:none;">
+                        <tr><th>Player </th><th> Score</th></tr>
+                </table>
         </div>
         </div>
         <div class="popup-darkbox" style="display:none;">
@@ -214,5 +225,6 @@
                         </div>
                 </div>
         </div>
+        
         </body>
 </html>

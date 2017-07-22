@@ -117,7 +117,6 @@ body{
     background-image:url(../images/rail.png);
     background-size: contain;
     background-repeat: no-repeat;
-
 }
 
 .board .game.cell.chance .content{
@@ -141,7 +140,6 @@ body{
 .board .game.cell .content{
     height:80%;
     width:100%;
-    
 }
 
 .board .cell:not(.top):not(.bottom) .title{
@@ -176,7 +174,7 @@ body{
     display:none;
 }
 .bottom.game.cell:not(.corner) .player , .top.game.cell:not(.corner) .player{
-        width: 40%;
+    width: 40%;
 }
 
 .left.game.cell:not(.corner) .player , .right.game.cell:not(.corner) .player{
@@ -235,4 +233,13 @@ body{
 
 .dice-dot.right{
     margin-left:36%;
+}
+
+.scoreboard{
+    font-size: 20px;
+    position: fixed;
+    right: 0px;
+    top: 40%;
+    background-color: white;
+    color: #0F119F;
 }
